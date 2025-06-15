@@ -6,11 +6,17 @@ def solve(limit: int = 1000) -> int:
 
     Find the sum of all the multiples of 3 or 5 below 1000.
     """
-    running_total = 0
-    for i in range(limit):
-        if i % 3 == 0 or i % 5 == 0:
-            running_total += i
-    return running_total
+    # total 3s
+    count_3 = (limit - 1) // 3
+    three_sum = 3 * count_3 * (count_3 + 1) // 2
+    # total 5s
+    count_5 = (limit - 1) // 5
+    five_sum = 5 * count_5 * (count_5 + 1) // 2
+    # total 15s (to avoid double counting)
+    count_15 = (limit - 1) // 15
+    fifteen_sum = 15 * count_15 * (count_15 + 1) // 2
+
+    return three_sum + five_sum - fifteen_sum
 
 
 if __name__ == "__main__":
